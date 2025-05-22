@@ -1,0 +1,28 @@
+from PIL import ImageDraw, ImageFont
+
+# Crear una vista previa simple de portada del sitio
+preview_path = "/mnt/data/site_preview.png"
+
+# Cargar el logo para mostrarlo en una simulación de sitio
+logo = Image.open("/mnt/data/logo.jpg").resize((300, 300))
+
+# Crear imagen base
+canvas = Image.new("RGB", (900, 600), color="#f0f0f0")
+draw = ImageDraw.Draw(canvas)
+
+# Título del sitio
+draw.rectangle([0, 0, 900, 120], fill="#0077cc")
+draw.text((30, 40), "A New Opportunity Thrift Store", fill="white", font=None, size=40)
+
+# Pegar el logo
+canvas.paste(logo, (50, 150))
+
+# Texto explicativo
+text = "Live website preview:\nhttps://your-username.github.io/thriftstore-site/\n\nIncludes:\n- Multilingual support\n- Contact + Map\n- Autism awareness symbol\n- Logo & responsive layout"
+
+draw.text((400, 180), text, fill="black")
+
+# Guardar la imagen
+canvas.save(preview_path)
+
+preview_path
